@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<head>
+    <title>About Us</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="loginstyle.css">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <title>Portfolio Website</title>
+  </head>
+  <body>
+    <!--navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#"><img src="logo.png" alt="logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="AboutUs.html">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Contactus.html">Contact Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="login.html" aria-disabled="true">Login</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <!--end of nav section-->
+  <!--title-->
+  <section class="title">
+    <div class="container-fluid">
+      <div class="row text-center">
+        <div class="col">
+          <h1 class="display-3 lead">Shopping Cart</h1>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </section>
+    <!--end of title-->
+    <script>
+
+        var app = angular.module("myShoppingList", []); 
+        app.controller("myCtrl", function($scope) {
+            $scope.products = ["Milk", "Bread", "Cheese"];
+            $scope.addItem = function () {
+                $scope.errortext = "";
+                if (!$scope.addMe) {return;}        
+                if ($scope.products.indexOf($scope.addMe) == -1) {
+                    $scope.products.push($scope.addMe);
+                } else {
+                    $scope.errortext = "The item is already in your shopping list.";
+                }
+            }
+            $scope.removeItem = function (x) {
+                $scope.errortext = "";    
+                $scope.products.splice(x, 1);
+            }
+        });
+        </script>
+        <div class="container">
+            <div class="row">
+                <div class="col w-50 mx-auto">
+        <div ng-app="myShoppingList" ng-controller="myCtrl">
+          <ul>
+            <li ng-repeat="x in products">{{x}}<span ng-click="removeItem($index)">&nbsp &nbsp×</span></li>
+          </ul>
+          <input ng-model="addMe">
+          <button id="add" ng-click="addItem()">Add</button>
+          <p>{{errortext}}</p>
+          </div>
+          <button type="button" class="btn btn-primary" onclick="Order()">Order</button>
+        </div>
+       
+        </div>
+        </div>
+</body>
+<script>
+    function Order(){
+        alert("Your order is successful");
+    }
+</script>
+
+</html>
